@@ -13,4 +13,4 @@ services:
             dockerfile: Dockerfile
         container_name: auth_sqlite3
         volumes: 
-            - ./sqlite3/data/:/sqlite3_data/
+            - ./sqlite3/data/:/data/
