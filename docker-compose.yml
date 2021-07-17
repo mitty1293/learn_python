@@ -4,5 +4,5 @@ services:
         image: python:3.9.5-slim-buster
         container_name: auth
         volumes: 
-            - ./auth_app/:/usr/auth_app/
+            - ./auth_app/:/auth_app/
         tty: true
