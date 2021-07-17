@@ -5,8 +5,7 @@ services:
         container_name: auth_python
         volumes: 
             - ./python/:/auth_app/
-        networks: 
-            - auth_net
+            - ./sqlite3/data/:/data/
         tty: true
     sqlite3:
         image: auth_sqlite3
@@ -16,8 +15,3 @@ services:
         container_name: auth_sqlite3
         volumes: 
             - ./sqlite3/data/:/data/
-        networks: 
-            - auth_net
-networks: 
-    auth_net:
-        driver: bridge
