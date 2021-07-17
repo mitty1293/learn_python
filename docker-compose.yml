@@ -2,7 +2,15 @@ version: "3.9"
 services: 
     python:
         image: python:3.9.5-slim-buster
-        container_name: auth
+        container_name: auth_python
         volumes: 
-            - ./auth_app/:/auth_app/
+            - ./python/:/auth_app/
         tty: true
+    sqlite3:
+        image: auth_sqlite3
+        build: 
+            context: ./sqlite3
+            dockerfile: Dockerfile
+        container_name: auth_sqlite3
+        volumes: 
+            - ./sqlite3/data/:/sqlite3_data/
