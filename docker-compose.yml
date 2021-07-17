@@ -5,5 +5,5 @@ services:
         container_name: auth
         restart: always
         volumes: 
-            - ./src/:/usr/src/
+            - ./auth_app/:/usr/auth_app/
         tty: true
