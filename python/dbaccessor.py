@@ -3,4 +3,8 @@ import sqlite3
 
 class DbAccessor():
     def __init__(self) -> None:
-        conn = sqlite3.connect()
+        self.conn = sqlite3.connect("/data/user.db")
+        self.cur = self.conn.cursor()
+
+    def aaa():
+        pass
