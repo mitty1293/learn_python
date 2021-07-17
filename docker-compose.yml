@@ -8,5 +8,5 @@ services:
         container_name: auth
         volumes: 
             - ./src/:/auth/src/
-            - ./data/:/auth/data/
+            # - ./data/:/auth/data/
         tty: true
