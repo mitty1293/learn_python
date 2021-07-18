@@ -13,7 +13,7 @@ class DbAccessor:
         self.cur = self.conn.cursor()
 
     def fetch_from_db(self, user_id: str) -> List[Tuple[str, str, str]]:
-        """DBから指定したレコードを取得するメソッド
+        """Select a row of data from 'user' table
 
         Args:
             user_id (str): 取得したいレコードのuser_id
@@ -36,7 +36,7 @@ class DbAccessor:
         self.cur.execute('SELECT * FROM user WHERE user_id = ?', (user_id,))
         return self.cur.fetchall()
 
-    def store_to_db(self, user_id: str, user_pass: str, salt: str) -> int:
+    def store_to_db(self, user_id: str, user_pass: str, salt: str) -> bool:
         """Insert a row of data to 'user' table
 
         Args:
@@ -45,11 +45,12 @@ class DbAccessor:
             salt (str): To be inserted in column 'salt'
 
         Returns:
-            int: [description]
+            bool: True if the data is stored, False otherwise
         """
+        is_stored: bool
         if self.fetch_from_db(user_id):
-            return "duplicate"
+            return (is_stored := False)
         else:
             self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
             self.conn.commit()
-            return "correct"
+            return (is_stored := True)
