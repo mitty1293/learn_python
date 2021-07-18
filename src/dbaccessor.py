@@ -4,6 +4,11 @@ from typing import List, Tuple
 
 class DbAccessor:
     def __init__(self, db_file: str) -> None:
+        """Constructor
+
+        Args:
+            db_file (str): SQLite database file path
+        """
         self.conn = sqlite3.connect(db_file)
         self.cur = self.conn.cursor()
 
@@ -18,7 +23,7 @@ class DbAccessor:
         
         Note:
             本メソッドはレコード取得までが範囲であるため、呼び出し元で存在判定することが望ましい。
-            
+
             pythonにおいて空リスト [] は False と判定される。
             その他のリストは全て True 判定となる。
 
@@ -32,6 +37,16 @@ class DbAccessor:
         return self.cur.fetchall()
 
     def store_to_db(self, user_id: str, user_pass: str, salt: str) -> int:
+        """Insert a row of data to 'user' table
+
+        Args:
+            user_id (str): To be inserted in column 'user_id'
+            user_pass (str): To be inserted in column 'user_pass'
+            salt (str): To be inserted in column 'salt'
+
+        Returns:
+            int: [description]
+        """
         self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
         self.conn.commit()
         return 0
