@@ -7,12 +7,31 @@ class DbAccessor:
         self.conn = sqlite3.connect(db_file)
         self.cur = self.conn.cursor()
 
-    def fetch_from_db(self, key: str) -> List[Tuple[str, str, str]]:
-        self.cur.execute('SELECT * FROM user WHERE user_id = ?', (key,))
-        results = self.cur.fetchall()
-        return results
+    def fetch_from_db(self, user_id: str) -> List[Tuple[str, str, str]]:
+        """DBから指定したレコードを取得するメソッド
 
-    def store_to_db(self, stored_id: str, stored_pass: str, stored_salt: str) -> int:
-        self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (stored_id, stored_pass, stored_salt))
+        Args:
+            user_id (str): 取得したいレコードのuser_id
+
+        Returns:
+            List[Tuple[str, str, str]]: 指定したuser_idが存在する場合は紐づくレコードが返る。
+                                        存在しない場合は空リストが返る。
+                                        レコード取得までが範囲であるため、呼び出し元で存在判定することが望ましい。
+        
+        Note:
+            pythonにおいて空リスト [] は False と判定される。
+            その他のリストは全て True 判定となる。
+
+            呼び出し元では以下のように判定すれば良い。
+            if results:
+                return results
+            else:
+                return "list is empty"
+        """
+        self.cur.execute('SELECT * FROM user WHERE user_id = ?', (user_id,))
+        return self.cur.fetchall()
+
+    def store_to_db(self, user_id: str, user_pass: str, salt: str) -> int:
+        self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
         self.conn.commit()
         return 0
