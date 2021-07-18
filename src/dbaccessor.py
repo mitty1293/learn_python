@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 import sqlite3
-from typing import List
+from typing import List, Tuple
 
 class DbAccessor:
-    def __init__(self, db_file) -> None:
+    def __init__(self, db_file: str) -> None:
         self.conn = sqlite3.connect(db_file)
         self.cur = self.conn.cursor()
 
-    def fetch_from_db(self, tbl_name, target_column, key) -> List:
-        self.cur.execute("SELECT * FROM %s WHERE %s = %s;", (tbl_name, target_column, key))
+    def fetch_from_db(self, key: str) -> List[Tuple[str, str, str]]:
+        self.cur.execute('SELECT * FROM user WHERE id = ?', (key,))
         results = self.cur.fetchall()
         return results
 
-    def store_to_db(self, tbl_name, stored_id, stored_pass, stored_salt):
-        self.cur.execute("INSERT INTO user (id, pass, salt) VALUES (%s, %s, %s);", (stored_id, stored_pass, stored_salt))
-        self.cur.commit()
+    def store_to_db(self, stored_id: str, stored_pass: str, stored_salt: str) -> int:
+        self.cur.execute('INSERT INTO user (id, pass, salt) VALUES (?, ?, ?)', (stored_id, stored_pass, stored_salt))
+        self.conn.commit()
         return 0
