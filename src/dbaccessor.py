@@ -47,6 +47,9 @@ class DbAccessor:
         Returns:
             int: [description]
         """
-        self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
-        self.conn.commit()
-        return 0
+        if self.fetch_from_db(user_id):
+            return "duplicate"
+        else:
+            self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
+            self.conn.commit()
+            return "correct"
