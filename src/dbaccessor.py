@@ -14,11 +14,11 @@ class DbAccessor:
             user_id (str): 取得したいレコードのuser_id
 
         Returns:
-            List[Tuple[str, str, str]]: 指定したuser_idが存在する場合は紐づくレコードが返る。
-                                        存在しない場合は空リストが返る。
-                                        レコード取得までが範囲であるため、呼び出し元で存在判定することが望ましい。
+            List[Tuple[str, str, str]]: user_idが存在する場合は紐づくレコード。存在しない場合は空リスト。
         
         Note:
+            本メソッドはレコード取得までが範囲であるため、呼び出し元で存在判定することが望ましい。
+            
             pythonにおいて空リスト [] は False と判定される。
             その他のリストは全て True 判定となる。
 
