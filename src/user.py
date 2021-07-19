@@ -1,12 +1,33 @@
 #!/usr/bin/env python3
+import hashlib
 
 class User():
     def __init__(self) -> None:
         self.user_id = ""
         self.user_pass = ""
+        self.encrypted_id = ""
+        self.hashed_pass = ""
     
-    def encrypt(self, plaintext):
-        pass
+    def encrypt(self, plaintext: str):
+        if plaintext == "":
+            return "Not plaintext"
+        
+
 
     def decrypt(self, ciphertext):
         pass
+
+    def create_hash(self, data: str, salt: str) -> None:
+        """[summary]
+
+        Args:
+            data (str): [description]
+            salt (str): [description]
+
+        Note:
+            str.encode(): strをutf-8でエンコードしたbytesオブジェクトを返す
+            hashlib.sha256(bytes): sha256で暗号化されたhashオブジェクトを返す
+            hash.hexdigest: hashオブジェクトの16進形式文字列を返す
+        """
+        data = data + salt
+        self.hashed_pass = hashlib.sha256(data.encode()).hexdigest()
