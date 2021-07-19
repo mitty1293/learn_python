@@ -15,9 +15,9 @@ def sign_in():
     pass
 
 def sign_up():
-    print("Entert the new ID ->")
+    print("Enter the new ID ->")
     new_user_id: str = input()
-    print("Entert the new Password ->")
+    print("Enter the new Password ->")
     new_user_pass: str = input()
 
     new_user = user.User(new_user_id, new_user_pass)
