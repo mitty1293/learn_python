@@ -5,17 +5,7 @@ class User():
     def __init__(self) -> None:
         self.user_id = ""
         self.user_pass = ""
-        self.encrypted_id = ""
         self.hashed_pass = ""
-    
-    def encrypt(self, plaintext: str):
-        if plaintext == "":
-            return "Not plaintext"
-        
-
-
-    def decrypt(self, ciphertext):
-        pass
 
     def create_hash(self, data: str, salt: str) -> None:
         """[summary]
@@ -31,3 +21,4 @@ class User():
         """
         data = data + salt
         self.hashed_pass = hashlib.sha256(data.encode()).hexdigest()
+        # hashlib.pbkdf2_hmac(hash_name, password, salt, iterations)
