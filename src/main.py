@@ -25,7 +25,7 @@ def sign_up():
     new_user.user_id: str = input("Enter the new ID ->")
     new_user.user_pass: str = input("Enter the new Password ->")
 
-    salt: str = "".join([secrets.choice(chars) for i in range(32)])
+    salt: str = "".join(secrets.choice(chars) for i in range(32))
     new_user.create_hash(new_user.user_pass, salt)
     print(salt)
 
