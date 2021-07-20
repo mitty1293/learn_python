@@ -46,7 +46,6 @@ class DbAccessor:
         is_stored: bool
         if self.fetch_from_db(user_id):
             return (is_stored := False)
-        else:
-            self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
-            self.conn.commit()
-            return (is_stored := True)
+        self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
+        self.conn.commit()
+        return (is_stored := True)
