@@ -5,6 +5,11 @@ from user import User
 
 class AccountManager:
     def __init__(self, db_file: str) -> None:
+        """Constractor
+
+        Args:
+            db_file (str): SQLite database file path
+        """
         self.chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
         self.cur = DbAccessor(db_file)
 
