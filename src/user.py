@@ -3,9 +3,9 @@ import hashlib
 
 class User():
     def __init__(self) -> None:
-        self.user_id = ""
-        self.user_pass = ""
-        self.hashed_pass = ""
+        self.user_id:str = ""
+        self.user_pass:str = ""
+        self.hashed_pass:str = ""
 
     def create_hash(self, data: str, salt: str) -> None:
         """[summary]
