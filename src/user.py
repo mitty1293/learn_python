@@ -19,6 +19,5 @@ class User():
             hashlib.sha256(bytes): sha256で暗号化されたhashオブジェクトを返す
             hash.hexdigest: hashオブジェクトの16進形式文字列を返す
         """
-        data = data + salt
-        self.hashed_pass = hashlib.sha256(data.encode()).hexdigest()
+        self.hashed_pass = hashlib.sha256((data + salt).encode()).hexdigest()
         # hashlib.pbkdf2_hmac(hash_name, password, salt, iterations)
