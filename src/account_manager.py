@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 import secrets, string
-import dbaccessor, user
+from dbaccessor import DbAccessor
+from user import User
 
 class AccountManager:
     def __init__(self, db_file: str) -> None:
         self.chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
-        self.cur = dbaccessor.DbAccessor(db_file)
+        self.cur = DbAccessor(db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
-        new_user = user.User()
+        new_user = User()
         new_user.user_id = user_id
         new_user.user_pass = user_pass
 
@@ -21,7 +22,7 @@ class AccountManager:
         return (is_succeeded := False)
 
     def signin(self, user_id: str, user_pass: str) -> bool:
-        existing_user = user.User()
+        existing_user = User()
         existing_user.user_id = user_id
         existing_user.user_pass = user_pass
 
