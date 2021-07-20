@@ -29,7 +29,6 @@ def sign_up():
     new_user.create_hash(new_user.user_pass, salt)
     print(salt)
 
-    # cur = dbaccessor.DbAccessor("/auth/data/user.db")
     is_succeeded: bool
     if cur.store_to_db(new_user.user_id, new_user.hashed_pass, salt):
         return(is_succeeded := True)
