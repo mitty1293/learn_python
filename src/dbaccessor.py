@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sqlite3
-from typing import List, Tuple
 
 class DbAccessor:
     def __init__(self, db_file: str) -> None:
