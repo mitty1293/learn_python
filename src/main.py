@@ -2,7 +2,7 @@
 from account_manager import AccountManager
 
 def main():
-    am = AccountManager()
+    am = AccountManager("/auth/data/user.db")
     sign: int = int(input("Sign up:0, Sign in:1 -> "))
     if sign == 1:
         print("Sign in progress...")

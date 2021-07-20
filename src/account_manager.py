@@ -3,8 +3,9 @@ import secrets, string
 import dbaccessor, user
 
 class AccountManager:
-    chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
-    cur = dbaccessor.DbAccessor("/auth/data/user.db")
+    def __init__(self, db_file: str) -> None:
+        self.chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
+        self.cur = dbaccessor.DbAccessor(db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
         new_user = user.User()
