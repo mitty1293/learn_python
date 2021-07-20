@@ -3,8 +3,8 @@ import string
 import dbaccessor, user
 from account_manager import AccountManager
 
-chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
 cur = dbaccessor.DbAccessor("/auth/data/user.db")
+am = AccountManager()
 
 def main():
     sign: int = int(input("Sign up:0, Sign in:1 -> "))
@@ -16,9 +16,9 @@ def main():
         print("Sign-in faii.")
     else:
         print("Sign up progress...")
-            new_user_id: str = input("Enter the new ID ->")
-            new_user_pass: str = input("Enter the new Password ->")
-        if AccountManager.signup(new_user_id, new_user_pass):
+        new_user_id: str = input("Enter the new ID ->")
+        new_user_pass: str = input("Enter the new Password ->")
+        if am.signup(new_user_id, new_user_pass):
             print("You have signed up successfully.")
             return 
         print("Sign-up fail. ID is already used by another account.")
