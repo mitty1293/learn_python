@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import user, secrets, string
+import secrets, string
+import dbaccessor, user
 
 class AccountManager:
     chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
