@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import user, secrets, string
+import string
 import dbaccessor, user
+from account_manager import AccountManager
 
 chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
 cur = dbaccessor.DbAccessor("/auth/data/user.db")
@@ -15,7 +16,9 @@ def main():
         print("Sign-in faii.")
     else:
         print("Sign up progress...")
-        if sign_up():
+            new_user_id: str = input("Enter the new ID ->")
+            new_user_pass: str = input("Enter the new Password ->")
+        if AccountManager.signup(new_user_id, new_user_pass):
             print("You have signed up successfully.")
             return 
         print("Sign-up fail. ID is already used by another account.")
@@ -30,19 +33,6 @@ def sign_in():
         existing_user.create_hash(existing_user.user_pass, db_data["salt"])
         if db_data["user_pass"] == existing_user.hashed_pass:
             return (is_succeeded := True)
-    return (is_succeeded := False)
-
-def sign_up():
-    new_user = user.User()
-    new_user.user_id: str = input("Enter the new ID ->")
-    new_user.user_pass: str = input("Enter the new Password ->")
-
-    salt: str = "".join(secrets.choice(chars) for i in range(32))
-    new_user.create_hash(new_user.user_pass, salt)
-
-    is_succeeded: bool
-    if cur.store_to_db(new_user.user_id, new_user.hashed_pass, salt):
-        return(is_succeeded := True)
     return (is_succeeded := False)
 
 if __name__ == '__main__':
