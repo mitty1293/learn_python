@@ -35,6 +35,5 @@ class AccountManager:
         is_succeeded: bool
         if (db_data := self.cur.fetch_from_db(existing_user.user_id)):
             existing_user.create_hash(existing_user.user_pass, db_data["salt"])
-            if db_data["user_pass"] == existing_user.hashed_pass:
-                return (is_succeeded := True)
-        return (is_succeeded := False)
+            return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass False))
+        return (is_succeeded := False)  
