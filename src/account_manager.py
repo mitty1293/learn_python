@@ -10,8 +10,9 @@ class AccountManager:
         Args:
             db_file (str): SQLite database file path
         """
+        self.db_file = db_file
         self.chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
-        self.cur = DbAccessor(db_file)
+        self.cur = DbAccessor(self.db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
         new_user = User()

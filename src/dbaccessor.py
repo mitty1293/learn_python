@@ -8,7 +8,8 @@ class DbAccessor:
         Args:
             db_file (str): SQLite database file path
         """
-        self.conn = sqlite3.connect(db_file)
+        self.db_file = db_file
+        self.conn = sqlite3.connect(self.db_file)
         self.conn.row_factory = sqlite3.Row
         self.cur = self.conn.cursor()
 
