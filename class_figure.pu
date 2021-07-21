@@ -1,3 +1,4 @@
+@startuml
 Class AccountManager {
 	db_file: String
     chars: String
@@ -18,4 +19,4 @@ Class User {
     + hashed_pass: String
     create_hash(data: String, salt: String): None
 }
-
+@enduml
