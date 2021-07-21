@@ -5,6 +5,7 @@ Class AccountManager {
     cur: DbAccessor
     signup(user_id: str, user_pass: str): bool
     signin(user_id: str, user_pass: str): bool
+    is_match(user_pass: str, hashed_pass: str): bool
 }
 Class DbAccessor {
 	db_file: String
