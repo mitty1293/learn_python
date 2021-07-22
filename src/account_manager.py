@@ -20,7 +20,7 @@ class AccountManager:
         new_user.user_pass = user_pass
 
         salt: str = "".join(secrets.choice(self.chars) for i in range(32))
-        new_user.create_hash(new_user.user_pass, salt)
+        new_user.create_hash(salt)
 
         is_succeeded: bool
         if self.cur.store_to_db(new_user.user_id, new_user.hashed_pass, salt):
@@ -34,6 +34,6 @@ class AccountManager:
 
         is_succeeded: bool
         if (db_data := self.cur.fetch_from_db(existing_user.user_id)):
-            existing_user.create_hash(existing_user.user_pass, db_data["salt"])
-            return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass False))
+            existing_user.create_hash(db_data["salt"])
+            return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass else False))
         return (is_succeeded := False)  
