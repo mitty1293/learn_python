@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import hashlib
 
-class User():
+class InputValue():
     def __init__(self) -> None:
         self.user_id:str = ""
         self.user_pass:str = ""

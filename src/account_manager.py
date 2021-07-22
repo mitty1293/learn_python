@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import secrets, string
 from dbaccessor import DbAccessor
-from user import User
+from input_value import InputValue
 
 class AccountManager:
     def __init__(self, db_file: str) -> None:
@@ -15,7 +15,7 @@ class AccountManager:
         self.cur = DbAccessor(self.db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
-        new_user = User()
+        new_user = InputValue()
         new_user.user_id = user_id
         new_user.user_pass = user_pass
 
@@ -28,7 +28,7 @@ class AccountManager:
         return (is_succeeded := False)
 
     def signin(self, user_id: str, user_pass: str) -> bool:
-        existing_user = User()
+        existing_user = InputValue()
         existing_user.user_id = user_id
         existing_user.user_pass = user_pass
 
