@@ -15,12 +15,10 @@ class AccountManager:
         self.cur = DbAccessor(self.db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
-        new_user = InputValue()
-        new_user.user_id = user_id
-        new_user.user_pass = user_pass
+        new_user = InputValue(user_id, user_pass)
 
         salt: str = "".join(secrets.choice(self.chars) for i in range(32))
-        new_user.create_hash(salt)
+        hash = new_user.create_hash(salt)
 
         is_succeeded: bool
         if self.cur.store_to_db(new_user.user_id, new_user.hashed_pass, salt):
