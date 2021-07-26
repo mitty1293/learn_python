@@ -18,20 +18,18 @@ class AccountManager:
         new_user = InputValue(user_id, user_pass)
 
         salt: str = "".join(secrets.choice(self.chars) for i in range(32))
-        hash = new_user.create_hash(salt)
+        hashed_pass = new_user.hashing_pass(salt)
 
         is_succeeded: bool
-        if self.cur.store_to_db(new_user.user_id, new_user.hashed_pass, salt):
+        if self.cur.store_to_db(new_user.user_id(), hashed_pass, salt):
             return(is_succeeded := True)
         return (is_succeeded := False)
 
     def signin(self, user_id: str, user_pass: str) -> bool:
-        existing_user = InputValue()
-        existing_user.user_id = user_id
-        existing_user.user_pass = user_pass
+        existing_user = InputValue(user_id, user_pass)
 
         is_succeeded: bool
-        if (db_data := self.cur.fetch_from_db(existing_user.user_id)):
-            existing_user.create_hash(db_data["salt"])
-            return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass else False))
+        if (db_data := self.cur.fetch_from_db(existing_user.user_id())):
+            hashed_pass = existing_user.hashing_pass(db_data["salt"])
+            return (is_succeeded := (True if db_data["user_pass"] == hashed_pass else False))
         return (is_succeeded := False)  
