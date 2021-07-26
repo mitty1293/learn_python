@@ -9,7 +9,7 @@ class InputValue():
     def user_id(self):
         return self._user_id.return_value()
 
-    def hashing_pass(self, salt):
+    def hashed_pass(self, salt):
         return self._user_pass.hashing_str(salt)
 
 class String():
