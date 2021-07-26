@@ -20,4 +20,12 @@ class String():
         return self.value
 
     def hashing_str(self, salt):
+        """[summary]
+        Args:
+            salt (str): [description]
+        Note:
+            str.encode(): strをutf-8でエンコードしたbytesオブジェクトを返す
+            hashlib.sha256(bytes): sha256で暗号化されたhashオブジェクトを返す
+            hash.hexdigest: hashオブジェクトの16進形式文字列を返す
+        """
         return hashlib.sha256((self.value + salt).encode()).hexdigest()
