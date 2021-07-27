@@ -17,7 +17,7 @@ class DbAccessor:
         """Select a row of data from 'user' table
 
         Args:
-            user_id (str): 取得したいレコードのuser_id
+            user_id (str): The user_id of the record to be fetched
 
         Returns:
             sqlite3.Row: user_idが存在する場合は紐づくレコードをRowオブジェクト（like 辞書）で返す。
