@@ -29,4 +29,20 @@ class AccountManager:
         is_succeeded: bool
         if (db_data := self.dbaccessor.fetch_from_db(existing_user.user_id())):
             return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass(db_data["salt"]) else False))
-        return (is_succeeded := False)  
+        return (is_succeeded := False)
+
+    def delete_user(self, user_id: str, user_pass: str) -> bool:
+        """[summary]
+
+        Args:
+            user_id (str): [description]
+            user_pass (str): [description]
+
+        Returns:
+            bool: True if the data is deleted, False otherwise
+        """
+        is_deleted: bool
+        if self.signin(user_id, user_pass):
+            self.dbaccessor.delete_from_db(user_id)
+            return (is_deleted := True)
+        return (is_deleted := False)

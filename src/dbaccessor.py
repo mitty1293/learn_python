@@ -51,18 +51,11 @@ class DbAccessor:
         self.conn.commit()
         return (is_stored := True)
 
-    def delete_from_db(self, user_id: str) -> bool:
+    def delete_from_db(self, user_id: str) -> None:
         """Delete a row from 'user' table
 
         Args:
             user_id (str): The user_id of the record to be deleted
-
-        Returns:
-            bool: True if the data is deleted, False otherwise
         """
-        is_deleted: bool
-        if self.fetch_from_db(user_id):
-            self.cur.execute('DELETE FROM user WHERE user_id = ?', (user_id,))
-            self.conn.commit()
-            return (is_deleted := True)
-        return (is_deleted := False)
+        self.cur.execute('DELETE FROM user WHERE user_id = ?', (user_id,))
+        self.conn.commit()
