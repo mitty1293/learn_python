@@ -40,16 +40,9 @@ class DbAccessor:
             user_id (str): To be inserted in column 'user_id'
             user_pass (str): To be inserted in column 'user_pass'
             salt (str): To be inserted in column 'salt'
-
-        Returns:
-            bool: True if the data is stored, False otherwise
         """
-        is_stored: bool
-        if self.fetch_from_db(user_id):
-            return (is_stored := False)
         self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
         self.conn.commit()
-        return (is_stored := True)
 
     def delete_from_db(self, user_id: str) -> None:
         """Delete a row from 'user' table

@@ -14,14 +14,23 @@ class AccountManager:
         self.dbaccessor = DbAccessor(db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
-        new_user = InputValue(user_id, user_pass)
+        """[summary]
 
+        Args:
+            user_id (str): [description]
+            user_pass (str): [description]
+
+        Returns:
+            bool: True if the data is stored, False otherwise
+        """
+        new_user = InputValue(user_id, user_pass)
         salt: str = "".join(secrets.choice(self.chars) for i in range(32))
 
         is_succeeded: bool
-        if self.dbaccessor.store_to_db(new_user.user_id(), new_user.hashed_pass(salt), salt):
-            return(is_succeeded := True)
-        return (is_succeeded := False)
+        if self.dbaccessor.fetch_from_db(new_user.user_id()):
+            return (is_succeeded := False)
+        self.dbaccessor.store_to_db(new_user.user_id(), new_user.hashed_pass(salt), salt)
+        return(is_succeeded := True)
 
     def signin(self, user_id: str, user_pass: str) -> bool:
         existing_user = InputValue(user_id, user_pass)
