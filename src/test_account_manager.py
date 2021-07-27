@@ -11,3 +11,6 @@ class TestAccount(unittest.TestCase):
         self.assertTrue(self.am.signin("test1","truepass"))
     def test_signin_fail(self):
         self.assertFalse(self.am.signin("test1","wrongpass"))
+
+if __name__ == '__main__':
+    unittest.main()
