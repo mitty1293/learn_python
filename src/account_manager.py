@@ -10,9 +10,8 @@ class AccountManager:
         Args:
             db_file (str): SQLite database file path
         """
-        self.db_file = db_file
         self.chars: str = string.ascii_uppercase + string.ascii_lowercase + string.ascii_letters + string.digits + '_' + '-' + '!'
-        self.cur = DbAccessor(self.db_file)
+        self.dbaccessor = DbAccessor(db_file)
 
     def signup(self, user_id: str, user_pass: str) -> bool:
         new_user = InputValue(user_id, user_pass)
@@ -20,7 +19,7 @@ class AccountManager:
         salt: str = "".join(secrets.choice(self.chars) for i in range(32))
 
         is_succeeded: bool
-        if self.cur.store_to_db(new_user.user_id(), new_user.hashed_pass(salt), salt):
+        if self.dbaccessor.store_to_db(new_user.user_id(), new_user.hashed_pass(salt), salt):
             return(is_succeeded := True)
         return (is_succeeded := False)
 
@@ -28,6 +27,6 @@ class AccountManager:
         existing_user = InputValue(user_id, user_pass)
 
         is_succeeded: bool
-        if (db_data := self.cur.fetch_from_db(existing_user.user_id())):
+        if (db_data := self.dbaccessor.fetch_from_db(existing_user.user_id())):
             return (is_succeeded := (True if db_data["user_pass"] == existing_user.hashed_pass(db_data["salt"]) else False))
         return (is_succeeded := False)  
