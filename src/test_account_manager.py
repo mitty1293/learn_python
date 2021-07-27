@@ -12,6 +12,10 @@ class TestAccount(unittest.TestCase):
         self.assertTrue(self.am.signin("test1","truepass"))
     def test4_signin_fail(self):
         self.assertFalse(self.am.signin("test1","wrongpass"))
+    def test5_delete_success(self):
+        self.assertTrue(self.am.delete_user("test1","truepass"))
+    def test6_delete_fail(self):
+        self.assertFalse(self.am.delete_user("test1","truepass"))
 
 if __name__ == '__main__':
     unittest.main()
