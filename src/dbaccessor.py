@@ -33,7 +33,7 @@ class DbAccessor:
         self.cur.execute('SELECT * FROM user WHERE user_id = ?', (user_id,))
         return self.cur.fetchone()
 
-    def store_to_db(self, user_id: str, user_pass: str, salt: str) -> bool:
+    def store_to_db(self, user_id: str, user_pass: str, salt: str) -> None:
         """Insert a row of data to 'user' table
 
         Args:
