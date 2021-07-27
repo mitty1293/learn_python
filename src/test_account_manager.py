@@ -1,11 +1,13 @@
 import unittest
+from account_manager import AccountManager
 
-class Test(unittest.TestCase):
+class TestAccount(unittest.TestCase):
+    am = AccountManager("/auth/data/user.db")
     def test_signup_success(self):
-        pass
+        self.assertTrue(self.am.signup("test1","truepass"))
     def test_signup_fail(self):
-        pass
+        self.assertFalse(self.am.signup("test1","truepass"))
     def test_signin_success(self):
-        pass
+        self.assertTrue(self.am.signin("test1","truepass"))
     def test_signin_fail(self):
-        pass
+        self.assertFalse(self.am.signin("test1","wrongpass"))
