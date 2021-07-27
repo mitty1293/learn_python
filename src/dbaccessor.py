@@ -19,8 +19,10 @@ class DbAccessor:
             user_id (str): The user_id of the record to be fetched
 
         Returns:
-            sqlite3.Row: user_idが存在する場合は紐づくレコードをRowオブジェクト（like 辞書）で返す。
-                         存在しない場合はNoneが返る。
+            sqlite3.Row: fetchone()は
+                         * user_idが存在する場合は紐づくレコードをsqlite3.Rowオブジェクト（like 辞書）で返す。
+                           sqlite3.Row[column_name] で要素にアクセス可能
+                         * 存在しない場合はNoneを返す。
         
         Note:
             本メソッドはレコード取得までが範囲であるため、呼び出し元で存在判定することが望ましい。
@@ -48,3 +50,19 @@ class DbAccessor:
         self.cur.execute('INSERT INTO user (user_id, user_pass, salt) VALUES (?, ?, ?)', (user_id, user_pass, salt))
         self.conn.commit()
         return (is_stored := True)
+
+    def delete_from_db(self, user_id: str) -> bool:
+        """Delete a row from 'user' table
+
+        Args:
+            user_id (str): The user_id of the record to be deleted
+
+        Returns:
+            bool: True if the data is deleted, False otherwise
+        """
+        is_deleted: bool
+        if self.fetch_from_db(user_id):
+            self.cur.execute('DELETE FROM user WHERE user_id = ?', (user_id,))
+            self.conn.commit()
+            return (is_deleted := True)
+        return (is_deleted := False)
