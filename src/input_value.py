@@ -9,8 +9,8 @@ class InputValue():
             user_id (str): User ID of the account
             user_pass (str): Password of the account
         """
-        self._user_id = String(user_id)
-        self._user_pass = String(user_pass)
+        self._user_id = StringValue(user_id)
+        self._user_pass = StringValue(user_pass)
 
     def user_id(self) -> str:
         """Return a value of self._user_id
@@ -31,7 +31,7 @@ class InputValue():
         """
         return self._user_pass.hashing_str(salt)
 
-class String():
+class StringValue():
     def __init__(self, value: str) -> None:
         """Constructor
 
@@ -41,20 +41,20 @@ class String():
         self.value: str = value
 
     def return_value(self) -> str:
-        """Return a value of class "String"
+        """Return a value of class "StringValue"
 
         Returns:
-            str: A value of class "String"
+            str: A value of class "StringValue"
         """
         return self.value
 
     def hashing_str(self, salt: str) -> str:
-        """Hashing a value of class "String"
+        """Hashing a value of class "StringValue"
         Args:
             salt (str): A string to randomizes the output of the password hash
 
         Returns:
-            str: Hash string of class "String"
+            str: Hash string of class "StringValue"
 
         Note:
             str.encode(): Return a bytes object with str encoded in utf-8
