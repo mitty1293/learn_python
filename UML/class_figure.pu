@@ -1,14 +1,14 @@
 @startuml
 Class AccountManager {
-	db_file: String
-    chars: String
+	db_file: str
+    chars: str
     dbaccessor: DbAccessor
     signup(user_id: str, user_pass: str): bool
     signin(user_id: str, user_pass: str): bool
     delete_user(user_id: str, user_pass: str): bool
 }
 Class DbAccessor {
-	db_file: String
+	db_file: str
     conn: Connection
     cur: Cursor
     fetch_from_db(user_id: str): Row
@@ -16,9 +16,14 @@ Class DbAccessor {
     delete_from_db(user_id: str): None
 }
 Class InputValue {
-    user_id: String
-    user_pass: String
-    user_id: str
-    create_hash(data: String, salt: String): None
+    user_id: StringValue
+    user_pass: StringValue
+    user_id(None): str
+    hashed_pass(salt: str): None
+}
+Class StringValue {
+    value: str
+    return_value(None): str
+    hashing_str(salt: str): str
 }
 @enduml
