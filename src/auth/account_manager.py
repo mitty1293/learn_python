@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import secrets, string
-from dbaccessor import DbAccessor
-from input_value import InputValue
+from auth.dbaccessor import DbAccessor
+from auth.input_value import InputValue
 
 class AccountManager:
     def __init__(self, db_file: str) -> None:

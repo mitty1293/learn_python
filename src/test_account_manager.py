@@ -1,8 +1,8 @@
 import unittest
-from account_manager import AccountManager
+import auth
 
 class TestAccount(unittest.TestCase):
-    am = AccountManager("/auth/data/user.db")
+    am = auth.AccountManager("/auth/data/user.db")
     test_user_id = "test" + ""
     def test1_signup_success(self):
         self.assertTrue(self.am.signup("test1","truepass"))
