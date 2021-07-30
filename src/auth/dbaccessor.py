@@ -11,6 +11,8 @@ class DbAccessor:
         self.conn = sqlite3.connect(db_file)
         self.conn.row_factory = sqlite3.Row
         self.cur = self.conn.cursor()
+        self.cur.execute("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY, user_id, user_pass, salt)")
+        self.conn.commit()
 
     def fetch_from_db(self, user_id: str) -> sqlite3.Row:
         """Select a row of data from 'user' table
