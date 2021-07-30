@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from account_manager import AccountManager
+import auth
 
 def main():
-    am = AccountManager("/auth/data/user.db")
+    am = auth.AccountManager("/auth/data/user.db")
     sign: int = int(input("Sign up:0, Sign in:1 -> "))
     if sign == 1:
         print("Sign in progress...")

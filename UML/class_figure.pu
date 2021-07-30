@@ -1,0 +1,29 @@
+@startuml
+Class AccountManager {
+	db_file: str
+    chars: str
+    dbaccessor: DbAccessor
+    signup(user_id: str, user_pass: str): bool
+    signin(user_id: str, user_pass: str): bool
+    delete_user(user_id: str, user_pass: str): bool
+}
+Class DbAccessor {
+	db_file: str
+    conn: Connection
+    cur: Cursor
+    fetch_from_db(user_id: str): Row
+    store_to_db(user_id: str, user_pass: str, salt: str): None
+    delete_from_db(user_id: str): None
+}
+Class InputValue {
+    user_id: StringValue
+    user_pass: StringValue
+    user_id(None): str
+    hashed_pass(salt: str): None
+}
+Class StringValue {
+    value: str
+    return_value(None): str
+    hashing_str(salt: str): str
+}
+@enduml
