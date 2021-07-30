@@ -2,7 +2,7 @@ import unittest
 import auth
 
 class TestAuth(unittest.TestCase):
-    am = auth.AccountManager("/home/ubuntu/test")
+    am = auth.AccountManager("/your/sqlite/database/file/path")
     test_user_id = "test_user_id"
     test_truepass = "test_truepass"
     test_wrongpass = "test_wrongpass"
