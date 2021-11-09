@@ -30,6 +30,7 @@ class TCPClient:
 			client_socket.send(request)
 			
 			# サーバーからレスポンスが送られてくるのを待ち取得する
+			# recv: サーバから送られてきたレスポンスデータをbytes型で4096バイトづつ取得する
 			response = client_socket.recv(4096)
 			
 			# レスポンス内容をファイルに書き出す
