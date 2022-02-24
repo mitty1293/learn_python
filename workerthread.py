@@ -1,13 +1,12 @@
 import os
 import re
-import textwrap
 import traceback
-import urllib.parse
 from datetime import datetime
-from pprint import pformat
 from socket import socket
 from threading import Thread
 from typing import Tuple, Optional
+
+import views
 
 class WorkerThread(Thread):
 	# 実行ファイルのあるディレクトリ
@@ -22,6 +21,13 @@ class WorkerThread(Thread):
 		"png": "image/png",
 		"jpg": "image/jpg",
 		"gif": "image/gif"
+	}
+
+	# pathとview関数の対応
+	URL_VIEW = {
+		"/now": views.now,
+		"/show_request": views.show_request,
+		"/parameters": views.parameters
 	}
 
 	def __init__(self, client_socket: socket, address: Tuple[str, int]):
@@ -50,65 +56,15 @@ class WorkerThread(Thread):
 			response_body: bytes
 			content_type: Optional[str]
 			response_line: str
-			# pathが/nowのときは現在時刻を表示するHTMLを生成
-			if  path == "/now":
-				html = f"""\
-					<html>
-					<body>
-						<h1>Now: {datetime.now()}</h1>
-					</body>
-					</html>
-				"""
-				response_body = textwrap.dedent(html).encode()
-				# Content-Typeを指定
-				content_type = "text/html; charset=UTF-8"
-				# レスポンスラインを生成
-				response_line = "HTTP/1.1 200 OK\r\n"
-			
-			# pathが/show_requestのときはHTTPリクエスト内容を表示するHTMLを生成
-			elif path == "/show_request":
-				html = f"""\
-					<html>
-					<body>
-						<h1>Request Line:</h1>
-						<p>
-							{method} {path} {http_version}
-						</p>
-						<h1>Headers:</h1>
-						<pre>{pformat(request_header)}</pre>
-						<h1>Body:</h1>
-						<pre>{request_body.decode("utf-8", "ignore")}</pre>
-					</body>
-					</html>
-				"""
-				response_body = textwrap.dedent(html).encode()
-				# Content-Typeを指定
-				content_type = "text/html; charset=UTF-8"
-				# レスポンスラインを生成
-				response_line = "HTTP/1.1 200 OK\r\n"
-			
-			elif path == "/parameters":
-				if method == "GET":
-					response_body = b"<html><body><h1>405 Method Not Allowed</h1></body></html>"
-					content_type = "text/html; charset=UTF-8"
-					response_line = "HTTP/1.1 405 Method Not Allowed\r\n"
-				elif method == "POST":
-					post_params = urllib.parse.parse_qs(request_body.decode())
-					html = f"""\
-						<html>
-						<body>
-							<h1>Parameters:</h1>
-							<pre>{pformat(post_params)}</pre>
-						</body>
-						</html>
-					"""
-					response_body = textwrap.dedent(html).encode()
-					# Content-Typeを指定
-					content_type = "text/html; charset=UTF-8"
-					# レスポンスラインを生成
-					response_line = "HTTP/1.1 200 OK\r\n"
 
-			# pathが/now以外のときは静的ファイルからレスポンスを生成
+			# pathに対応するview関数があれば関数を呼び出してレスポンスを生成する
+			if path in self.URL_VIEW:
+				view = self.URL_VIEW[path]
+				response_body, content_type, response_line = view(
+					method, path, http_version, request_header, request_body
+				)
+
+			# pathが上記以外のときは静的ファイルからレスポンスを生成
 			else:
 				try:
 					# ファイルからレスポンスボディを生成
