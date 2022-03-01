@@ -10,7 +10,8 @@ from typing import Tuple, Optional
 import settings
 from henango.http.request import HTTPRequest
 from henango.http.response import HTTPResponse
-from urls import URL_VIEW
+from henango.urls.resolver import URLResolver
+from urls import url_patterns
 
 class Worker(Thread):
 	# 実行ファイルのあるディレクトリ
@@ -57,17 +58,14 @@ class Worker(Thread):
 			# httpリクエストをパースする
 			request = self.parse_http_request(request_bytes)
 
-			# pathにマッチするurl_patternを探す
-			# マッチすればview関数を呼び出してレスポンスを生成する
-			for url_pattern, view in URL_VIEW.items():
-				match = self.url_match(url_pattern, request.path)
-				if match:
-					request.params.update(match.groupdict())
-					response = view(request)
-					break
+			# URL解決を試みる
+			view = URLResolver().resolve(request)
 
-			# pathにマッチするurl_patternが見つからなければ静的ファイルからレスポンスを生成
+			if view:
+				# URL解決できた場合はviewからレスポンスを取得する
+				response = view(request)
 			else:
+				# URL解決できなければ、静的ファイルからレスポンスを生成
 				try:
 					# ファイルからレスポンスボディを生成
 					response_body = self.get_static_file_content(request.path)
@@ -172,9 +170,3 @@ class Worker(Thread):
 		response_header += f"Content-Type: {response.content_type}\r\n"
 					
 		return response_header
-
-	def url_match(self, url_pattern: str, path: str) -> Optional[Match]:
-		# URLパターンを正規表現パターンに変換する
-		# ex) '/user/<user_id>/profile' => '/user/(?P<user_id>[^/]+)/profile'
-		re_pattern = re.sub(r"<(.+?)>", r"(?P<\1>[^/]+)", url_pattern)
-		return re.match(re_pattern, path)
