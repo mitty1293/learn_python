@@ -12,9 +12,7 @@ def now(request: HTTPRequest) -> HTTPResponse:
     pathが/nowのときは現在時刻を表示するHTMLを生成
     """
     context = {"now": datetime.now()}
-    html = render("now.html", context)
-    body = textwrap.dedent(html).encode()
-    # Content-Typeを指定
+    body = render("now.html", context)
     content_type = "text/html; charset=UTF-8"
     
     return HTTPResponse(body=body, content_type=content_type, status_code=200)

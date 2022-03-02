@@ -54,6 +54,10 @@ class Worker(Thread):
 
 			# レスポンスを生成する
 			response = view(request)
+
+			# bodyがstrだったらbytesへ変換する
+			if isinstance(response.body, str):
+				response.body = response.body.encode()
 		
 			# レスポンスラインを生成
 			response_line = self.build_response_line(response)
