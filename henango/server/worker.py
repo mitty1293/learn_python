@@ -61,24 +61,9 @@ class Worker(Thread):
 			# URL解決を試みる
 			view = URLResolver().resolve(request)
 
-			if view:
-				# URL解決できた場合はviewからレスポンスを取得する
-				response = view(request)
-			else:
-				# URL解決できなければ、静的ファイルからレスポンスを生成
-				try:
-					# ファイルからレスポンスボディを生成
-					response_body = self.get_static_file_content(request.path)
-					# Content-Typeを指定
-					content_type = None
-					response = HTTPResponse(body=response_body, content_type=content_type, status_code=200)
-				except OSError:
-					# レスポンスを取得できない（ファイルが見つからなかった等）場合はログ出力して404を返す
-					traceback.print_exc()
-					response_body = b"<html><body><h1>404 Not Found</h1></body></html>"
-					content_type = "text/html; charset=UTF-8"
-					response = HTTPResponse(body=response_body, content_type=content_type, status_code=404)
-			
+			# レスポンスを生成する
+			response = view(request)
+		
 			# レスポンスラインを生成
 			response_line = self.build_response_line(response)
 			
@@ -122,22 +107,6 @@ class Worker(Thread):
 			headers[key] = value
 
 		return HTTPRequest(method=method, path=path, http_version=http_version, headers=headers, body=request_body)
-
-	def get_static_file_content(self, path: str) -> bytes:
-		"""
-		リクエストpathからstaticファイルの内容を取得する
-		"""
-		default_static_root = os.path.join(os.path.dirname(__file__), "../../static")
-		static_root = getattr(settings, "STATIC_ROOT", default_static_root)
-
-
-		# path先頭の/を削除し相対パスにする
-		relative_path = path.lstrip("/")
-		# ファイルのpathを取得
-		static_file_path = os.path.join(static_root, relative_path)
-		# ファイルからレスポンスボディを作成する
-		with open(static_file_path, "rb") as f:
-				return f.read()
 	
 	def build_response_line(self, response: HTTPResponse) -> str:
 		"""
