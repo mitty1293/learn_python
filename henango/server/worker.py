@@ -1,24 +1,15 @@
-import os
 import re
 import traceback
 from datetime import datetime
-from re import Match
 from socket import socket
 from threading import Thread
-from typing import Tuple, Optional
+from typing import Tuple
 
-import settings
 from henango.http.request import HTTPRequest
 from henango.http.response import HTTPResponse
 from henango.urls.resolver import URLResolver
-from urls import url_patterns
 
 class Worker(Thread):
-	# 実行ファイルのあるディレクトリ
-	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-	# 静的配信するファイルを置くディレクトリ
-	STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
 	# 拡張子とMIME Typeの対応
 	MIME_TYPES = {
 		"html": "text/html; charset=UTF-8",

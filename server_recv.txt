@@ -1,18 +1,13 @@
-POST /parameters HTTP/1.1
+GET /now HTTP/1.1
 Host: localhost:8080
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
 Accept-Language: ja,en-US;q=0.7,en;q=0.3
 Accept-Encoding: gzip, deflate
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 204
-Origin: http://localhost:8080
 Connection: keep-alive
-Referer: http://localhost:8080/form.html
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
+Sec-Fetch-Site: cross-site
+Cache-Control: max-age=0
 
-text_name=text&password_name=aaa&text_area_name=dfvgthg&radio_name=radio1&check_name=check1&check_name=check4&hidden_name=hidden_value_%E6%97%A5%E6%9C%AC%E8%AA%9E&file_name=&submit_name=%E9%80%81%E4%BF%A1

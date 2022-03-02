@@ -2,22 +2,17 @@ import textwrap
 import urllib.parse
 from datetime import datetime
 from pprint import pformat
-from typing import Tuple, Optional
 
 from henango.http.request import HTTPRequest
 from henango.http.response import HTTPResponse
+from henango.template.renderer import render
 
 def now(request: HTTPRequest) -> HTTPResponse:
     """
     pathが/nowのときは現在時刻を表示するHTMLを生成
     """
-    html = f"""\
-        <html>
-        <body>
-            <h1>Now: {datetime.now()}</h1>
-        </body>
-        </html>
-    """
+    context = {"now": datetime.now()}
+    html = render("now.html", context)
     body = textwrap.dedent(html).encode()
     # Content-Typeを指定
     content_type = "text/html; charset=UTF-8"
