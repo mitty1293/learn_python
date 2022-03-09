@@ -2,6 +2,7 @@ import urllib.parse
 from datetime import datetime
 from pprint import pformat
 
+from henango.http.cookie import Cookie
 from henango.http.request import HTTPRequest
 from henango.http.response import HTTPResponse
 from henango.template.renderer import render
@@ -57,7 +58,13 @@ def login(request: HTTPRequest) -> HTTPResponse:
         post_params = urllib.parse.parse_qs(request.body.decode())
         username = post_params["username"][0]
         email = post_params["email"][0]
-        return HTTPResponse(status_code=302, headers={"Location": "/welcome"}, cookies={"username": username, "email": email})
+
+        cookies = [
+            Cookie(name="username", value=username, max_age=30),
+            Cookie(name="email", value=email, max_age=30)
+        ]
+
+        return HTTPResponse(status_code=302, headers={"Location": "/welcome"}, cookies=cookies)
 
 def welcome(request: HTTPRequest) -> HTTPResponse:
     # Cookieにusernameが含まれていなければ、ログインしていないとみなして/loginへリダイレクト
