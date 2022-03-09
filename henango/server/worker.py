@@ -160,7 +160,7 @@ class Worker(Thread):
 			if cookie.http_only:
 				cookie_header += "; HttpOnly"
 
-			response_header += cookie_header ; "\r\n"
+			response_header += cookie_header + "\r\n"
 		
 		#　その他ヘッダーを生成する
 		for header_name, header_value in response.headers.items():
