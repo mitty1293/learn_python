@@ -102,3 +102,6 @@ a:50, a_id:9790528
 >>> print(f"b:{b}, b_id:{id(b)}")
 b:50, b_id:9790528
 ```
+# [4.8. 関数定義についてもう少し](https://docs.python.org/ja/3/tutorial/controlflow.html#more-on-defining-functions)
+引数の定義方法には 3 つの形式があり、←どれのことだ。。。デフォルト、位置キーワード、任意引数？
+https://qiita.com/raviqqe/items/ee2bcb6bef86502f8cc6
