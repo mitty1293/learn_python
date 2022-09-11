@@ -111,3 +111,5 @@ b:50, b_id:9790528
 5種類、6種類と考える方が良い。
 # [5.1. リスト型についてもう少し](https://docs.python.org/ja/3/tutorial/datastructures.html#more-on-lists)
 `insert`, `remove`, `sort` などのリストを操作する一部メソッドは `None` を返す。 
+# [5.1.3. リストの内包表記](https://docs.python.org/ja/3/tutorial/datastructures.html#list-comprehensions)
+簡単に内包表記の方法をチートリスト風に描く
