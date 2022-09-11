@@ -103,5 +103,9 @@ a:50, a_id:9790528
 b:50, b_id:9790528
 ```
 # [4.8. 関数定義についてもう少し](https://docs.python.org/ja/3/tutorial/controlflow.html#more-on-defining-functions)
-引数の定義方法には 3 つの形式があり、←どれのことだ。。。デフォルト、位置キーワード、任意引数？
-https://qiita.com/raviqqe/items/ee2bcb6bef86502f8cc6
+> 引数の定義方法には 3 つの形式があり
+
+デフォルト値のある引数、位置専用キーワード専用引数、可変長引数 である。
+
+が、https://docs.python.org/ja/3/glossary.html#term-parameter や [Qiita](https://qiita.com/raviqqe/items/ee2bcb6bef86502f8cc6#python-3%E3%81%A7%E3%81%AE%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%82%E3%82%8B%E3%81%84%E3%81%AF%E3%81%9D%E3%81%AE%E5%AE%A3%E8%A8%80%E3%81%AE%E6%96%B9%E6%B3%95)を確認し、  
+5種類、6種類と考える方が良い。
