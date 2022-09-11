@@ -112,4 +112,7 @@ b:50, b_id:9790528
 # [5.1. リスト型についてもう少し](https://docs.python.org/ja/3/tutorial/datastructures.html#more-on-lists)
 `insert`, `remove`, `sort` などのリストを操作する一部メソッドは `None` を返す。 
 # [5.1.3. リストの内包表記](https://docs.python.org/ja/3/tutorial/datastructures.html#list-comprehensions)
-簡単に内包表記の方法をチートリスト風に描く
+ 式、for 句、0個以上の for か if 句で構成される。  
+ リスト内包表記の実行結果は、 for と if 句のコンテキスト中で式を評価した結果からなる新しいリストである。
+ 
+ 基本は `[式 for 任意の変数名 in イテラブルオブジェクト]`
