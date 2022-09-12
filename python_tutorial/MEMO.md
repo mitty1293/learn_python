@@ -130,3 +130,21 @@ b:50, b_id:9790528
 >>> a
 [12, 14, 16, 18]
  ```
+# [5.3. タプルとシーケンス](https://docs.python.org/ja/3/tutorial/datastructures.html#tuples-and-sequences)
+タプルはイミュータブル（不変）であるが、要素にリストのようなミュータブル（可変）な型を含めることは可能。
+```
+>>> a = ([1, 2, 3], "hello")
+>>> a[0]
+[1, 2, 3]
+>>> a[1]
+'hello'
+>>> a[0][1]
+2
+>>> a[0][1] = 4
+>>> a
+([1, 4, 3], 'hello')
+>>> a[0] = [4, 5, 6]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+```
