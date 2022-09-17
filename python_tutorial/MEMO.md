@@ -148,3 +148,27 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'tuple' object does not support item assignment
 ```
+# [5.5. 辞書型 (dictionary)](https://docs.python.org/ja/3/tutorial/datastructures.html#dictionaries)
+## リスト
+```
+>>> list = [1, 2, 3]
+>>> list[3]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+>>> list[3] = 4
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list assignment index out of range
+```
+## 辞書
+```
+>>> dict = {"a":1, "b":2}
+>>> dict["c"]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'c'
+>>> dict["c"] = 3
+>>> dict
+{'a': 1, 'b': 2, 'c': 3}
+```
