@@ -173,7 +173,7 @@ KeyError: 'c'
 {'a': 1, 'b': 2, 'c': 3}
 ```
 # [5.6. ループのテクニック](https://docs.python.org/ja/3/tutorial/datastructures.html#looping-techniques)
-## 辞書のループ
+## 辞書
 ```
 >>> dict = {"key1": "value1", "key2": "value2"}
 >>> for x in dict:
@@ -196,4 +196,24 @@ value2
 ...
 key1 value1
 key2 value2
+```
+## シーケンス
+```
+>>> for i, v in enumerate(["v0", "v1", "v2"]):
+...     print(i, v)
+...
+0 v0
+1 v1
+2 v2
+```
+## zip
+```
+>>> list1 = ["L11", "L12", "L13"]
+>>> list2 = ["L21", "L22", "L23"]
+>>> for l1, l2 in zip(list1, list1):
+...     print(f"{l1}, {l2}")
+...
+L11, L11
+L12, L12
+L13, L13
 ```
