@@ -172,3 +172,28 @@ KeyError: 'c'
 >>> dict
 {'a': 1, 'b': 2, 'c': 3}
 ```
+# [5.6. ループのテクニック](https://docs.python.org/ja/3/tutorial/datastructures.html#looping-techniques)
+## 辞書のループ
+```
+>>> dict = {"key1": "value1", "key2": "value2"}
+>>> for x in dict:
+...     print(x)
+...
+key1
+key2
+>>> for x in dict.keys():
+...     print(x)
+...
+key1
+key2
+>>> for x in dict.values():
+...     print(x)
+...
+value1
+value2
+>>> for x, y in dict.items():
+...     print(x, y)
+...
+key1 value1
+key2 value2
+```
