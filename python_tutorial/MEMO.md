@@ -225,3 +225,44 @@ L13, L13
     1. 入力されたスクリプトのあるディレクトリ (ファイルが指定されなかったときはカレントディレクトリ)。
     2. 環境変数PYTHONPATHで指定したディレクトリ(シェル変数の PATH と同じ構文)。
     3. インストールに依存するデフォルト (site モジュールによって処理される site-packages ディレクトリ等)。
+# [7.2.1. ファイルオブジェクトのメソッド](https://docs.python.org/ja/3/tutorial/inputoutput.html#methods-of-file-objects)
+
+`f=open("test.txt", "r", encoding="utf-8")` や `with open("test.txt", "r", encoding="utf-8") as f:`等でファイルオブジェクト`f`を生成したとする。
+```
+# ファイル内全部読み込み
+f.read()
+
+# 1行読み込み
+f.readline()
+
+# 複数行読み込み
+for line in f:
+    print(line)
+
+# ファイル内容すべてをリスト形式で読み込み
+f.readlines()
+['line1\n', 'line2\n', 'line3\n', '\n']
+
+list(f)
+['line1\n', 'line2\n', 'line3\n', '\n']
+
+# 書き込み
+# 書き込まれた文字数を返す
+f.write("line1\nline2\n")
+12
+
+# ファイルオブジェクト位置を示して変更する
+>>> f = open('workfile', 'rb+')
+>>> f.write(b'0123456789abcdef')
+16
+>>> f.tell()    # ファイルオブジェクトの位置を返すtell()
+16
+>>> f.seek(5)      # ファイルオブジェクトの位置を変更するseek()
+5
+>>> f.read(1)
+b'5'
+>>> f.seek(-3, 2)  # ファイル終端から3バイト目に移動
+13
+>>> f.read(1)
+b'd'
+```
