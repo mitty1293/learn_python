@@ -266,3 +266,13 @@ b'5'
 >>> f.read(1)
 b'd'
 ```
+# [7.2.2. json による構造化されたデータの保存](https://docs.python.org/ja/3/tutorial/inputoutput.html#saving-structured-data-with-json)
+* シリアライズ：pythonのデータ形式⇒文字列表現 に変換すること
+* デシリアライズ：文字列表現⇒pythonのデータ形式 に変換すること
+```
+# pythonのデータ形式（list）をJSON形式の文字列表現に変換する
+>>> import json
+>>> x = [1, "test", "list"]
+>>> json.dumps(x)
+'[1, "test", "list"]'
+```
