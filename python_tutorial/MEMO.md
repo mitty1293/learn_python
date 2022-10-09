@@ -293,9 +293,10 @@ finally:
     # finallyがreturnを含む場合、tryのreturnではなく、finallyのreturnが返る
 ```
 # [9.2. Python のスコープと名前空間](https://docs.python.org/ja/3/tutorial/classes.html#python-scopes-and-namespaces)
-[名前空間の参考](https://docs.pyq.jp/python/library/namespace.html), [スコープの参考](https://docs.pyq.jp/python/library/scope.html)
-[参考資料2](https://atmarkit.itmedia.co.jp/ait/articles/1612/09/news030_2.html)
-[参考資料3](https://www.ceodata.com/python-namespaces-scope/)
+[名前空間の参考](https://docs.pyq.jp/python/library/namespace.html), 
+[スコープの参考](https://docs.pyq.jp/python/library/scope.html), 
+[他参考](https://atmarkit.itmedia.co.jp/ait/articles/1612/09/news030_2.html), 
+[他参考2](https://www.ceodata.com/python-namespaces-scope/)
 ## 名前空間
 * 名前空間 (namespace) とは、名前からオブジェクトへの対応付け (mapping) のこと.
   * 例: 組込み名の集合 (abs() 等の関数や組込み例外名)、モジュール内のグローバルな名前、関数を呼び出したときのローカルな名前、オブジェクトの属性からなる集合
