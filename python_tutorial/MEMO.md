@@ -276,3 +276,19 @@ b'd'
 >>> json.dumps(x)
 '[1, "test", "list"]'
 ```
+# [8.3. 例外を処理する](https://docs.python.org/ja/3/tutorial/errors.html#handling-exceptions)
+```
+try:
+    # まずtry節が実行される
+    # 例外が発生すると以降の処理はスキップされる.
+except:
+    # 例外が発生すればexcept節が実行される.
+else:
+    # 例外が発生しなければ実行される.発生したらスキップされる.
+finally:
+    # 例外の発生有無にかかわらずfinally節があれば実行される
+    # 例外がexceptで処理されなければfinally実行後に再送出される
+    # finallyがbreak, continue, returnを実行する場合、例外は再送出されない
+    # tryがbreak, continue, returnに達する場合、その直前にfinallyが実行される
+    # finallyがreturnを含む場合、tryのreturnではなく、finallyのreturnが返る
+```
