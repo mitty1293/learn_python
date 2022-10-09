@@ -292,3 +292,6 @@ finally:
     # tryがbreak, continue, returnに達する場合、その直前にfinallyが実行される
     # finallyがreturnを含む場合、tryのreturnではなく、finallyのreturnが返る
 ```
+# [9.2. Python のスコープと名前空間](https://docs.python.org/ja/3/tutorial/classes.html#python-scopes-and-namespaces)
+* 名前空間 (namespace) とは、名前からオブジェクトへの対応付け (mapping) のこと.
+  * 例: 組込み名の集合 (abs() 等の関数や組込み例外名)、モジュール内のグローバルな名前、関数を呼び出したときのローカルな名前、オブジェクトの属性からなる集合
