@@ -353,3 +353,6 @@ x.f()
         * インスタンスの型を調べる.`obj.__class__`が`classinfo`やそのサブクラスのインスタンスであれば`True`.
     * `issubclass(class, classinfo)`
         * クラスの継承関係を調べる.`class`が`classinfo`のサブクラスであれば`True`.
+# [9.8. イテレータ (iterator)](https://docs.python.org/ja/3/tutorial/classes.html#iterators)
+https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
+↑を見てわかりやすく仕組みを書く
