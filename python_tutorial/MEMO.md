@@ -318,4 +318,31 @@ finally:
     * 組み込み関数やクラスを参照するための名前空間
 ## 代入
 *  代入はデータをコピーしません.オブジェクトを名前に束縛するだけです.
+# [9.3.2. クラスオブジェクト](https://docs.python.org/ja/3/tutorial/classes.html#class-objects)
+* クラスオブジェクトは`属性参照（obj.name）`, `インスタンス生成`の2種類の操作を実行できる.
+    * 有効な属性は、クラスオブジェクト生成時にクラスの名前空間にあった名前すべて（クラス変数等のデータ属性、クラスメソッド、__doc__、等）.
+* クラスが `__init__()` メソッドを定義すると、新しく生成されたクラスインスタンスに対して `__init__()` が自動的に呼び出される.インスタンスオブジェクトを生成する際に特定の初期状態として生成することができる.
+# [9.3.3. インスタンスオブジェクト](https://docs.python.org/ja/3/tutorial/classes.html#instance-objects)
+* インスタンスオブジェクトは`属性参照（obj.name）`のみを実行できる.
+    * 有効な属性は`データ属性（インスタンス変数, クラス変数等）`, `メソッド`の2種類.
+# [9.3.4. メソッドオブジェクト](https://docs.python.org/ja/3/tutorial/classes.html#method-objects)
+* メソッドとは、オブジェクトに "属している" 関数のこと
+* メソッドの引数として、インスタンスオブジェクトが関数の第1引数として渡される.
+```
+# 以下のクラス定義がある場合
+class MyClass:
+    def f(self):
+        return "HEllo World"
 
+# インスタンス化
+x = MyClass()
+
+# fは引数無しで呼び出せる.
+# 厳密には、x.f() と MyClass.f(x) は等価である.
+x.f()
+```
+# [9.3.5. クラスとインスタンス変数](https://docs.python.org/ja/3/tutorial/classes.html#class-and-instance-variables)
+* インスタンス変数: それぞれのインスタンスについて固有のデータのためのもの
+* クラス変数: そのクラスのすべてのインスタンスによって共有される属性やメソッドのためのもの
+# [9.4. いろいろな注意点](https://docs.python.org/ja/3/tutorial/classes.html#random-remarks)
+* インスタンスとクラスの両方で同じ属性名が使用されている場合、属性検索はインスタンスが優先される.
