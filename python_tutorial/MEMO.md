@@ -354,9 +354,55 @@ x.f()
     * `issubclass(class, classinfo)`
         * クラスの継承関係を調べる.`class`が`classinfo`のサブクラスであれば`True`.
 # [9.8. イテレータ (iterator)](https://docs.python.org/ja/3/tutorial/classes.html#iterators)
-https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
-↑を見てわかりやすく仕組みを書く
+## イテレータとは
+`__iter__()`メソッド, `__next__()`メソッドを持っているオブジェクトのこと.
+### `__iter__()`
+* `オブジェクト.__iter__()` で呼び出す.
+* オブジェクトからイテレータを作って返す.オブジェクトがイテレータだった場合はオブジェクトそのものを返す.
+### `__next__()`
+* `イテレータ.__next__()`で呼び出す.
+* イテレータの要素を1つずつ取り出し、要素がなくなれば`StopIteration`例外を返す.
+### 例
+```
+# listはイテレータではない(__next__を持っていない).
+>>> list1 = [0, 1, 2]
+>>> hasattr(list1, "__iter__")
+True
+>>> hasattr(list1, "__next__")
+False
+
+# オブジェクトからイテレータを返す組み込み関数 iter() を使ってイテレータ化する.
+# イテレータ化されるので __next__() メソッドを持つ.
+>>> it = iter(list1)
+>>> hasattr(it, "__iter__")
+True
+>>> hasattr(it, "__next__")
+True
+
+# __next__()メソッドを呼び出す組み込み関数next()を使って要素を順に取り出す.
+>>> next(it)
+0
+>>> next(it)
+1
+>>> next(it)
+2
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+```
+## `for`文の中身
+`for`文は内部で以下の処理を行っている.
+* 指定したオブジェクトに対して`iter()`を呼び出しイテレータが返される.
+* 返されたイテレータに対して`next()`を呼び出し要素を順に取り出す.
+* `StopIteration`例外が発生したらループ処理を終了する.
+## イテレータを自作する
 * `__next__()`, `__iter__()`を使えば自分でイテレータを作ることもできる.
+* `__next__()`を持つオブジェクトを返す`__iter__()`を定義すれば良い.
+## 参考
+https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
+https://qiita.com/tchnkmr/items/e740173d7400f8672d75
+↑を見てわかりやすく仕組みを書く
 # [9.9. ジェネレータ (generator)](https://docs.python.org/ja/3/tutorial/classes.html#generators)
 * `yield()`を使ったジェネレータを用いてイテレータを作成できる.
 * `__next__()`, `__iter__()`を用いた作成方法よりも定義がコンパクトで簡単.
