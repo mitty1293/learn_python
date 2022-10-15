@@ -356,3 +356,71 @@ x.f()
 # [9.8. イテレータ (iterator)](https://docs.python.org/ja/3/tutorial/classes.html#iterators)
 https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
 ↑を見てわかりやすく仕組みを書く
+* `__next__()`, `__iter__()`を使えば自分でイテレータを作ることもできる.
+# [9.9. ジェネレータ (generator)](https://docs.python.org/ja/3/tutorial/classes.html#generators)
+* `yield()`を使ったジェネレータを用いてイテレータを作成できる.
+* `__next__()`, `__iter__()`を用いた作成方法よりも定義がコンパクトで簡単.
+# [10. 標準ライブラリミニツアー](https://docs.python.org/ja/3/tutorial/stdlib.html#brief-tour-of-the-standard-library)
+## `os`モジュール
+オペレーティングシステム関連の関数を提供する.
+```
+import os
+
+# カレントディレクトリを取得
+>>> os.getcwd()
+'/home/mitty1293'
+
+# ディレクトリの中身をリスト化
+>>> os.listdir()
+['.python_history', '.rustup', ...]
+>>>
+```
+## `shutil`モジュール
+ファイルやディレクトリの日常管理で使える高水準インターフェース.
+```
+>>> import shutil
+
+# ファイルsrcをメタデータ（パーミッション等）を含まずdstとしてコピーする.
+# dstにディレクトリを指定するとエラー（`IsADirectoryError`）.
+>>> shutil.copyfile('src', 'dst')
+
+# ファイルsrcをメタデータ（パーミッション等）を含まずdistとしてコピーする.
+# dstにディレクトリを指定するとdst内にsrcと同じ名前のファイルを作成する.
+>>> shutil.copy(src, dst)
+
+# copyと同様の機能で、更にメタデータを含めてコピーする.
+>>> shutil.copy2(src, dst)
+
+# ファイル移動
+>>> shutil.move('/build/executables', 'installdir')
+'installdir'
+```
+## `glob`モジュール
+```
+import glob
+
+# ディレクトリのワイルドカード検索からファイル一覧をリストで取得.
+>>> glob.glob('*.py')
+['primes.py', 'random.py', 'quote.py']
+```
+## `sys`モジュール
+* コマンドライン引数は`sys`モジュールの`argv`属性にリストで保存されている.
+```
+# args.py
+import sys
+print(sys.argv)
+
+# CommandLine
+$ python args.py arg1 arg2
+['args.py', 'arg1', 'arg2']
+```
+* `sys.exit()`でスクリプトを終了させる.
+## `re`モジュール
+文字列処理のための正規表現を提供する.
+## `math`モジュール
+各数学関数を提供する.
+## データ圧縮モジュール
+以下のようなモジュールでサポートされる.
+zlib, gzip, bz2, lzma, zipfile, tarfile
+## テスト
+doctest, unittest
