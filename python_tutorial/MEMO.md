@@ -401,9 +401,8 @@ StopIteration
 * `__next__()`を持つオブジェクトを返す`__iter__()`を定義すれば良い.
 * 実際に作成したものが https://github.com/mitty1293/learn_python/blob/main/python_tutorial/my_iterator.py
 ## 参考
-https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
+https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/  
 https://qiita.com/tchnkmr/items/e740173d7400f8672d75
-↑を見てわかりやすく仕組みを書く
 # [9.9. ジェネレータ (generator)](https://docs.python.org/ja/3/tutorial/classes.html#generators)
 * `yield()`を使ったジェネレータを用いてイテレータを作成できる.
 * `__next__()`, `__iter__()`を用いた作成方法よりも定義がコンパクトで簡単.
