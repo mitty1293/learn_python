@@ -399,6 +399,7 @@ StopIteration
 ## イテレータを自作する
 * `__next__()`, `__iter__()`を使えば自分でイテレータを作ることもできる.
 * `__next__()`を持つオブジェクトを返す`__iter__()`を定義すれば良い.
+* 実際に作成したものが https://github.com/mitty1293/learn_python/blob/main/python_tutorial/my_iterator.py
 ## 参考
 https://1978works.com/2021/06/13/what-iterator-object-in-python-is-like/
 https://qiita.com/tchnkmr/items/e740173d7400f8672d75
