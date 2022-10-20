@@ -465,6 +465,34 @@ $ python args.py arg1 arg2
 文字列処理のための正規表現を提供する.
 ## `math`モジュール
 各数学関数を提供する.
+```
+import math
+
+# 小数点以下を切り捨て
+>>> math.floor(10.123)
+10
+# 正確には「引数以下の最大の整数」を返す
+>>> math.floor(-10.123)
+-11
+
+# 小数点以下を切り上げ
+>>> math.ceil(10.123)
+11
+# 正確には「引数以上の最小の整数」を返す
+>>> math.ceil(-10.123)
+-10
+```
+## `random`モジュール
+擬似乱数を生成するモジュール
+```
+>>> import random
+
+random.randrange
+random.randint
+random.sample
+random.choices
+radom.choice
+```
 ## データ圧縮モジュール
 以下のようなモジュールでサポートされる.
 zlib, gzip, bz2, lzma, zipfile, tarfile
