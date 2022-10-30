@@ -509,3 +509,6 @@ import math
 zlib, gzip, bz2, lzma, zipfile, tarfile
 ## テスト
 doctest, unittest
+## メール関連モジュール
+email, smtplib, poplib  
+(mailという名前のライブラリは標準ライブラリには存在しない)
