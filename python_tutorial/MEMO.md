@@ -487,11 +487,22 @@ import math
 ```
 >>> import random
 
-random.randrange
-random.randint
-random.sample
-random.choices
-radom.choice
+# 0以上stop未満の整数からランダムに選んで返す.rangeのランダム版.
+>>> random.randrange(stop)
+# start以上stop未満の整数でstepに当てはまる要素からランダムに選んで返す.rangeのランダム版.
+>>> random.randrange(start, stop[, step])
+
+# start以上stop以下の整数からランダムに選んで返す.
+>>> random.randint(start, stop)
+
+# シーケンスseqからk個を重複無しで抽出
+>>> random.sample(seq, k)
+
+# シーケンスseqからk個を重複有りで抽出
+>>> random.choices
+
+# シーケンスseqから1個を抽出
+>>> random.choice(seq)
 ```
 ## データ圧縮モジュール
 以下のようなモジュールでサポートされる.
