@@ -512,3 +512,17 @@ doctest, unittest
 ## メール関連モジュール
 email, smtplib, poplib  
 (mailという名前のライブラリは標準ライブラリには存在しない)
+# [11.7. リスト操作のためのツール](https://docs.python.org/ja/3/tutorial/stdlib2.html#tools-for-working-with-lists)
+- `array`
+- `collections`, `deque`
+- `heapq`
+# [11.8. 10 進浮動小数演算](https://docs.python.org/ja/3/tutorial/stdlib2.html#decimal-floating-point-arithmetic)
+`decimal`モジュールでは10 進浮動小数の算術演算をサポートする.  
+組み込みの 2 進浮動小数の実装である `float` に比べて以下の点で便利である.
+- 財務アプリケーションやその他の正確な10進表記が必要なアプリケーション
+- 精度の制御
+- 法的または規制上の理由に基づく値丸めの制御
+- 有効桁数の追跡が必要になる場合
+- ユーザが手計算の結果と同じ演算結果を期待するようなアプリケーション
+
+2 進浮動小数では適切に扱えない10 進小数成分を上手く扱うことができる.
