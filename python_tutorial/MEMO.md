@@ -558,3 +558,35 @@ pyenv local 3.10.8
 # システム全体で使うバージョンを指定
 pyenv global 3.10.8
 ```
+# [12.3. pip を使ったパッケージ管理](https://docs.python.org/ja/3/tutorial/venv.html#managing-packages-with-pip)
+```
+# パッケージインストール
+pip install requests
+
+# バージョン指定してインストール
+pip install requests==2.6.0
+
+# パッケージを最新にバージョンアップ
+pip install --upgrade requests
+pip install -U requests
+
+# アンインストール
+pip uninstall requests
+
+# パッケージ情報表示
+pip show requests
+
+# インストールされているパッケージ一覧表示
+pip list
+
+# インストールされているパッケージ一覧表示（requirements.txt形式で）
+pip freeze
+
+# ファイルから一括でパッケージインストール
+pip install -r requirements.txt
+```
+# [14. 対話入力編集と履歴置換](https://docs.python.org/ja/3/tutorial/interactive.html#interactive-input-editing-and-history-substitution)
+* 変数とモジュール名の補完はインタープリタの起動時に自動で有効になっており、[Tab]キーで補完機能が呼び出せる。
+* タブ補完は、Pythonの文（命令）の名前、現在のローカル変数、使用できるモジュール名を検索する。
+* string.aのようなドット付きの表記に対しては、一番最後にある「.」まで式を評価し、結果として得られたオブジェクトの属性の中から補完候補を示す。
+* デフォルトの設定ではユーザーディレクトリの `.python_history` という名前のファイルに履歴を保存する。
