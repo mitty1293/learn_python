@@ -1,3 +1,30 @@
+# イテレータ周り
+```
+>>> list = [1, 2, 3]
+>>> list[:2]
+[1, 2]
+>>> list[1:]
+[2, 3]
+>>> list[-1:]
+[3]
+>>> list[-2:]
+[2, 3]
+
+>>> len(list)
+3
+
+>>> for i in range(3):
+...     print(i)
+...
+0
+1
+2
+```
+# [3.1.1. 数](https://docs.python.org/ja/3/tutorial/introduction.html#numbers)
+pythonの計算で覚えておくべきルールは以下の3つ.
+* 除算（/）は常にfloat型を返す。
+* float型を含む計算は常にfloat型を返す。
+* int型同士の計算はint型を返すが除算（/）は除く。（floatになる）
 # [3.1.3 リスト型 (list)](https://docs.python.org/ja/3/tutorial/introduction.html#lists)
 ## スライス
 リストはスライスができる
