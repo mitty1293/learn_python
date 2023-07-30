@@ -14,6 +14,7 @@
         - 最終的に`carry`に何も操作が行われていない場合のルール
 - `fizzbuzz.py`
     - 実際に使ってみるコード.
+    - `python fizzbuzz.py`
 ## メモ
 - ルール（約数か判定, 3倍か判定, etc）を追加したい場合, 以下のみ行えば他コードを書き直さなくて良い.
     - `fizzbuzz_spec.py`に`match`と`apply`を持つルールclassを追加
