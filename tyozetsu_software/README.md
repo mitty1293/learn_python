@@ -3,3 +3,5 @@
 
 章によらず, メモ書きは`NOTE.md`に書く.  
 コード類はディレクトリを分けてその中にコードを入れていく.
+
+参考：https://github.com/kattsun44/chozetsu-book
