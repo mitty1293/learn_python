@@ -19,6 +19,7 @@
 - ルール（約数か判定, 3倍か判定, etc）を追加したい場合, 以下のみ行えば他コードを書き直さなくて良い.
     - `fizzbuzz_spec.py`に`match`と`apply`を持つルールclassを追加
     - `fizzbuzz.py`の`NumberConverter`の引数を追加
+    - 本質である`fizzbuzz_core.py`は触る必要がない
 - つまり拡張はしやすく（open）, 変更しなくて良い（close）な設計となる.
 ## 参考リンク
 - https://docs.python.org/ja/3/library/abc.html
