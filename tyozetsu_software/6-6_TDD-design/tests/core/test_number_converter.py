@@ -1,0 +1,9 @@
+import unittest
+from unittest.mock import MagicMock
+
+from src.core.number_converter import NumberConverter
+
+class TestNumberConverter(unittest.TestCase):
+    def test_convert_with_empty_rules(self):
+        fizzbuzz = NumberConverter([])
+        self.assertEqual("", fizzbuzz.convert(1))
