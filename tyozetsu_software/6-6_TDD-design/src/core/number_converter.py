@@ -6,6 +6,8 @@ class NumberConverter:
         self.rules = rules
 
     def convert(self, n: int) -> str:
-        if self.rules:
-            return self.rules[0].replace(n)
-        return ""
+        carry = ""
+        for rule in self.rules:
+            if rule.match(carry, n):
+                carry = rule.apply(carry, n)
+        return carry
