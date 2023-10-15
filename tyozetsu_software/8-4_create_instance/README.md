@@ -1,4 +1,4 @@
-#8-4_create_instance8-3_design_for_polymorphism
+# 8-4_create_instance8-3_design_for_polymorphism
 8-4インスタンスを生成するに関するディレクトリ
 * AbstractFactoryパターンは、アーキテクチャ設計に動的なオブジェクトを織り交ぜていくのに欠かせない **最重要パターン**
 * これ以降に登場する他のパターンは、誰でも考えたら思いつくようなやり方に、単に名前が付いているだけの価値しかないと言っても過言ではないぐらい
