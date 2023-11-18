@@ -6,3 +6,6 @@
 
 参考：https://github.com/kattsun44/chozetsu-book
 参考2:https://github.com/blue32a-sandbox/chozetsu-book
+
+## 進捗
+2023/11/18 8章まで終わり。次回9章から。
